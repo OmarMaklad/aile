@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "959499982468",
+    "project_id": "aile-1d900",
+    "storage_bucket": "aile-1d900.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:959499982468:android:bfaf2ba1e1feb1dd3714d1",
+        "android_client_info": {
+          "package_name": "com.aile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "959499982468-bc1l1snn5dph92m5hb5f0e2ib7p9qug9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlmprL8pEcjzxXE8I5aUYrEemous1QBRY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "959499982468-bc1l1snn5dph92m5hb5f0e2ib7p9qug9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
