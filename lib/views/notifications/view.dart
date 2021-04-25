@@ -59,8 +59,8 @@ class _NotificationsState extends State<Notifications> {
             child: Text(LocaleKeys.shouldSignUp.tr(),
               style: TextStyle(fontSize: 16,
                 fontFamily: "dinnextl bold",),),
-          ) : _isLoading
-              ? Center(
+          ): _isLoading
+              ?Center(
                   child: SpinKitChasingDots(
                   size: 40,
                   color: kPrimaryColor,
@@ -73,7 +73,8 @@ class _NotificationsState extends State<Notifications> {
                 ):
           ListView.separated(
                   itemBuilder: (cxt, index) => NotificationCard(
-                    text: _notificationModel.data[index].body,
+                    text:  context.locale == Locale('en', 'US')?_notificationModel.data[index].bodyEn:
+                    _notificationModel.data[index].body,
                   ),
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,

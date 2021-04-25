@@ -4,12 +4,26 @@ import 'package:aile/views/login/loginForm.dart';
 import 'package:aile/views/signUp/view.dart';
 import 'package:aile/widgets/customTextFeild.dart';
 import 'package:aile/widgets/donotHave.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../constants.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
+  @override
+  _LoginState createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+
+  @override
+  void initState() {
+    _firebaseMessaging.getToken().then((v) {
+      LoginCubit.get(context).token = v;
+    });    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     final height= MediaQuery.of(context).size.height;

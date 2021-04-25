@@ -1,5 +1,6 @@
 import 'package:aile/constants.dart';
 import 'package:aile/views/packageDetails/bloc/cubit.dart';
+import 'package:aile/views/packageDetails/bloc/payCubit.dart';
 import 'package:aile/views/packageDetails/view.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
@@ -24,6 +25,7 @@ class SmallSlider extends StatelessWidget {
           itemBuilder: (_,index)=>GestureDetector(
             onTap: (){
               PackageCubit.get(context).id=cubit.homeModel.packages[index].id;
+              PayCubit.get(context).packageId=cubit.homeModel.packages[index].id;
               PackageCubit.get(context).lang=context.locale == Locale('en', 'US')?"en":"ar";
               PackageCubit.get(context).getPackage();
               Navigator.push(context,MaterialPageRoute(builder: (_)=>PackageDetails()));

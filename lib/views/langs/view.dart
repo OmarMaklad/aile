@@ -35,11 +35,14 @@ class _ChangeLangState extends State<ChangeLang> {
 
     return Scaffold(
       backgroundColor: kBackgroundColor,
+      appBar: AppBar(
+          backgroundColor: kPrimaryColor,
+          title: Text(LocaleKeys.language.tr(),style: TextStyle(
+            fontFamily: "dinnextl bold",
+            fontSize:22,),)
+      ),
       body: Column(
         children: [
-          CustomAppBar(
-            title:LocaleKeys.language.tr(),
-          ),
           Container(
             margin: EdgeInsets.symmetric(horizontal:20,vertical: 20) ,
             padding: EdgeInsets.symmetric(horizontal: 15),

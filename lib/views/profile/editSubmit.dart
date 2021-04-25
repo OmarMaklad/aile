@@ -34,7 +34,6 @@ class SubmitEdit extends StatelessWidget {
           cubit1.controller1.clear();
           cubit1.controller2.clear();
           cubit1.controller3.clear();
-          cubit.getProfile(lang: "en");
           Scaffold.of(_).showSnackBar(SnackBar(
             backgroundColor: kPrimaryColor,
             content: Text(
@@ -44,10 +43,10 @@ class SubmitEdit extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   fontSize: 14),
             )));
+          BlocProvider.of<ProfileCubit>(context).getProfile(lang: context.locale == Locale('en', 'US')?"en":"ar");
         }
       },
       builder: (context, state) {
-
         return state is EditLoadingState
             ? Center(
           child: SpinKitChasingDots(
@@ -59,7 +58,7 @@ class SubmitEdit extends StatelessWidget {
               padding:  EdgeInsets.symmetric(horizontal: 20,vertical:5),
               child: CustomButton(
               onPressed: () {
-                  cubit1.editProfile(lang: context.locale == Locale('en', 'US')?"en":"ar");
+                  cubit1.editProfile(lang:context.locale == Locale('en', 'US')?"en":"ar");
               },
 
               title: LocaleKeys.edit.tr()),

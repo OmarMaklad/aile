@@ -1,11 +1,15 @@
 import 'package:aile/generated/locale_keys.g.dart';
+import 'package:aile/views/condition/view.dart';
 import 'package:aile/views/contactUs/view.dart';
+import 'package:aile/views/langs/view.dart';
+import 'package:aile/views/login/view.dart';
 import 'package:aile/views/memberProfile/view.dart';
 import 'package:aile/views/profile/bloc/profileCubit.dart';
 import 'package:aile/views/profile/bloc/profileState.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../constants.dart';
 
 class DrawerView extends StatefulWidget {
@@ -93,6 +97,38 @@ class _DrawerViewState extends State<DrawerView> {
                         Text(
                           LocaleKeys.contactUs.tr(),
                           style: TextStyle(color:Colors.black,fontSize: 18, fontFamily: "dinnextl medium",),),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 15,),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (_)=>ChangeLang()));
+                    },
+                    child: Row(
+                      children: [
+                        Icon(Icons.language,color: kTextColor,size:25,),
+                        SizedBox(width:5,),
+                        Text(
+                          LocaleKeys.language.tr(),
+                          style: TextStyle(color:Colors.black,fontSize: 16, fontFamily: "dinnextl medium",),),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 15,),
+                  GestureDetector(
+                    onTap: ()async{
+                      SharedPreferences _prefs = await SharedPreferences.getInstance();
+                      _prefs.clear();
+                      Navigator.push(context, MaterialPageRoute(builder: (_)=>Login()));
+                    },
+                    child: Row(
+                      children: [
+                        Icon(Icons.cancel,color: kTextColor,size:25,),
+                        SizedBox(width:5,),
+                        Text(
+                          LocaleKeys.logOut.tr(),
+                          style: TextStyle(color:Colors.black,fontSize: 16, fontFamily: "dinnextl medium",),),
                       ],
                     ),
                   ),

@@ -23,6 +23,7 @@ class Data {
   String image;
   String address;
   String description;
+  bool fav;
 
   Data(
       {this.name,
@@ -30,7 +31,8 @@ class Data {
         this.rate,
         this.image,
         this.address,
-        this.description});
+        this.description,
+        this.fav});
 
   Data.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -39,6 +41,7 @@ class Data {
     image = json['image'];
     address = json['address'];
     description = json['description'];
+    fav = json['fav'];
   }
 
   Map<String, dynamic> toJson() {
@@ -49,6 +52,7 @@ class Data {
     data['image'] = this.image;
     data['address'] = this.address;
     data['description'] = this.description;
+    data['fav'] = this.fav;
     return data;
   }
 }

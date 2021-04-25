@@ -3,6 +3,7 @@ import 'package:aile/views/profile/model/model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -13,6 +14,7 @@ class ProfileCubit extends Cubit<ProfileState>{
   static ProfileCubit get (context)=> BlocProvider.of(context);
   ProfileModel profileModel;
   Dio dio = Dio();
+  GetStorage box =GetStorage();
 
   Future<ProfileModel> getProfile({String lang})async{
     emit(ProfileInitState());
@@ -26,6 +28,7 @@ class ProfileCubit extends Cubit<ProfileState>{
     };
 
     try{
+      emit(ProfileLoadingState());
       var response = await dio.get('https://hloulsoft.com/aile/public/api/v1/profile');
       if(response.statusCode == 200){
         print(response.data);
@@ -34,15 +37,15 @@ class ProfileCubit extends Cubit<ProfileState>{
         _prefs.setString("phone", response.data['data']['phone']);
         _prefs.setString("name", response.data['data']['name']);
         _prefs.setString("email", response.data['data']['email']);
-        print(_prefs.getString("phone"));
-        print(_prefs.getString("name"));
-        print(_prefs.getString("email"));
+        box.write("package", response.data['data']['package_id']);
+        print(response.data);
+
         emit(ProfileSuccessState());
       }else{
         emit(ProfileErrorState('enter net error'));
       }
     }catch(e){
-      print(e.toString()) ;
+      emit(ProfileErrorState('enter net error'));
     }
     return profileModel;
   }

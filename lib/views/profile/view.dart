@@ -96,18 +96,6 @@ class ProfileView extends StatelessWidget {
           ),
           SizedBox(height:50,),
           SubmitEdit(),
-          Padding(
-            padding:  EdgeInsets.symmetric(horizontal: 20,),
-            child: CustomButton(
-              title:LocaleKeys.logOut.tr(),
-              onPressed: ()async{
-                SharedPreferences _prefs = await SharedPreferences.getInstance();
-                _prefs.clear();
-                Navigator.pushAndRemoveUntil(
-                    context, MaterialPageRoute(builder: (_) =>Login()),(_)=>false);
-              },
-            ),
-          ),
         ],
       ),
     );

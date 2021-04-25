@@ -7,6 +7,7 @@ import 'package:aile/views/memberDetails/dialog.dart';
 import 'package:aile/views/memberDetails/model/model.dart';
 import 'package:aile/views/memberDetails/spatialDialog.dart';
 import 'package:aile/views/profile/bloc/profileCubit.dart';
+import 'package:aile/views/signUp/view.dart';
 import 'package:aile/widgets/customButton.dart';
 import 'package:aile/widgets/customTextFeild.dart';
 import 'package:aile/widgets/smallButton.dart';
@@ -16,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 class MemberDetails extends StatefulWidget {
   final int id;
@@ -39,6 +41,7 @@ class _MemberDetailsState extends State<MemberDetails> {
       loading=false;
     });
   }
+  GetStorage box =GetStorage();
   @override
   void initState() {
    _getMember();
@@ -90,7 +93,7 @@ class _MemberDetailsState extends State<MemberDetails> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(Icons.star,size: 20,color: Colors.yellow,),
-                        Text(_mDetailsModel.data.rate.toInt().toString(), style: TextStyle( fontFamily: "dinnextl medium", fontSize: 14),),
+                        Text(_mDetailsModel.data.rate.toString(), style: TextStyle( fontFamily: "dinnextl medium", fontSize: 14),),
                         Container(margin: EdgeInsets.symmetric(horizontal: 5),width: 1,height: 20,color:kTextColor,),
                         Text("${_mDetailsModel.data.salary}\$ h", style: TextStyle( fontFamily: "dinnextl medium", fontSize: 14),)
                       ],
@@ -115,7 +118,7 @@ class _MemberDetailsState extends State<MemberDetails> {
                     color: Colors.white,
                     borderRadius: BorderRadius.vertical(top: Radius.circular(30))
                 ),
-                child: Column(
+                child: ListView(
                   children: [
                     SizedBox(height: height*.06,),
                     Padding(
@@ -134,7 +137,7 @@ class _MemberDetailsState extends State<MemberDetails> {
                                 lang: widget.lang
                               );
                             },
-                              child: Icon(like==false?Icons.favorite_border
+                              child: Icon(_mDetailsModel.data.fav==false?Icons.favorite_border
                                 :Icons.favorite,size:30,color: Colors.red,)),
                         ],
                       ),
@@ -160,13 +163,12 @@ class _MemberDetailsState extends State<MemberDetails> {
                       padding:  EdgeInsets.symmetric(horizontal:30),
                       child: Text(_mDetailsModel.data.description*100,style: TextStyle( fontFamily: "dinnextl medium", fontSize: 14,)),
                     ),
-
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 20),
-                      child: Row(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SmallButton(title:LocaleKeys.order.tr(),
+                          CustomButton(title:LocaleKeys.order.tr(),
                             onPressed: ()async{
                             SharedPreferences _prefs = await SharedPreferences.getInstance();
                             if(_prefs.getString("token")==null){
@@ -174,7 +176,7 @@ class _MemberDetailsState extends State<MemberDetails> {
                                   AlertDialog(
                                     shape: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
                                     content: Container(
-                                      height:MediaQuery.of(context).size.height*.12,
+                                      height:MediaQuery.of(context).size.height*.3,
                                       width: double.infinity,
                                       child:Column(
                                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -184,6 +186,13 @@ class _MemberDetailsState extends State<MemberDetails> {
                                           Text(LocaleKeys.shouldSignUp.tr(),
                                             style: TextStyle(fontSize: 18,
                                               fontFamily: "dinnextl medium",),),
+                                          SizedBox(height: 10,),
+                                          SmallButton(onPressed: (){
+                                            Navigator.push(context, MaterialPageRoute(builder: (_)=>SignUpView()));
+                                          }, title: LocaleKeys.signUp.tr(),color: kPrimaryColor,),
+                                          SmallButton(onPressed: (){
+                                            Navigator.pop(context);
+                                          }, title: LocaleKeys.no.tr()),
                                         ],
                                       ),
                                     ),
@@ -197,8 +206,10 @@ class _MemberDetailsState extends State<MemberDetails> {
                               ));
                             }
 
-                          },color: kPrimaryColor,),
-                          SmallButton(title: context.locale == Locale('en', 'US')?
+                          }),
+                          SizedBox(height: 10,),
+                          box.read("package")==null?SizedBox():
+                         CustomButton(title: context.locale == Locale('en', 'US')?
                           "Spatial Order":
                           "طلب خاص",
                             onPressed: ()async {
@@ -214,7 +225,7 @@ class _MemberDetailsState extends State<MemberDetails> {
                                         height: MediaQuery
                                             .of(context)
                                             .size
-                                            .height * .12,
+                                            .height * .3,
                                         width: double.infinity,
                                         child: Column(
                                           mainAxisAlignment: MainAxisAlignment
@@ -227,25 +238,26 @@ class _MemberDetailsState extends State<MemberDetails> {
                                             Text(LocaleKeys.shouldSignUp.tr(),
                                               style: TextStyle(fontSize: 18,
                                                 fontFamily: "dinnextl medium",),),
+                                            SizedBox(height: 10,),
+                                            SmallButton(onPressed: (){
+                                              Navigator.push(context, MaterialPageRoute(builder: (_)=>SignUpView()));
+                                            }, title: LocaleKeys.signUp.tr(),color: kPrimaryColor,),
+                                            SmallButton(onPressed: (){
+                                              Navigator.pop(context);
+                                            }, title: LocaleKeys.no.tr()),
                                           ],
                                         ),
                                       ),
                                     ),
                                 );
                               } else {
-                                OrderCubit
-                                    .get(context)
-                                    .id = widget.id;
-                                showDialog(context: context, builder: (_) =>
-                                    AlertDialog(
-                                      backgroundColor: Colors.transparent,
-                                      content: OrderDialog(),
-                                    ));
+                                Navigator.push(context, MaterialPageRoute(builder: (_)=>SpatialOrderDialog()));
                               }
-                            },color: kPrimaryColor,),
+                            },color: Colors.white,),
                         ],
                       ),
                     ),
+                    SizedBox(height: height*.06,),
                   ],
                 ),
               ),

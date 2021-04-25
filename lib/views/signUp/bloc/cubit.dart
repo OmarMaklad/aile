@@ -35,17 +35,15 @@ class SignUpCubit extends Cubit<SignUpState>{
       if(response.statusCode!=null&&response.statusCode == 200){
         SharedPreferences _prefs = await SharedPreferences.getInstance();
         _prefs.setString("token",response.data["token"]);
-        print(response.data["token"]);
+        print(response.data);
         print(_prefs.getString("token"));
         emit(SignUpSuccessState());
-      }else if(response.statusCode == 404){
-        print("مش تمام يا صاحبى");
-        print(response.data['msg']);
+      }else if(response.statusCode!=null&&response.statusCode == 400){
+        print(response.data);
         emit(SignUpErrorState("The email has been already taken"));
       }
-    }catch( e){
-      if(e.response!=null)
-        emit(SignUpErrorState(e));
+    }catch(e){
+        emit(SignUpErrorState("The email has been already taken"));
     }
 
   }

@@ -1,4 +1,5 @@
 import 'package:aile/generated/locale_keys.g.dart';
+import 'package:aile/views/forgetPassword/view.dart';
 import 'package:aile/views/login/bloc/cubit.dart';
 import 'package:aile/views/login/submit.dart';
 import 'package:aile/widgets/customTextFeild.dart';
@@ -50,7 +51,7 @@ class LoginForm extends StatelessWidget {
           ),
           GestureDetector(
             onTap: (){
-              //Navigator.push(context, MaterialPageRoute(builder: (_)=>ForgetPassword()));
+              Navigator.push(context, MaterialPageRoute(builder: (_)=>ForgetPassword()));
             },
             child: Padding(
               padding:  EdgeInsets.symmetric(horizontal:40),

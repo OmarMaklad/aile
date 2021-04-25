@@ -1,13 +1,19 @@
 import 'dart:ui';
 import 'package:aile/generated/locale_keys.g.dart';
 import 'package:aile/views/packageDetails/bloc/cubit.dart';
+import 'package:aile/views/packageDetails/bloc/payCubit.dart';
+import 'package:aile/views/packageDetails/bloc/payState.dart';
 import 'package:aile/views/packageDetails/bloc/state.dart';
 import 'package:aile/views/packageDetails/model/model.dart';
+import 'package:aile/views/profile/bloc/profileCubit.dart';
+import 'package:aile/views/signUp/view.dart';
 import 'package:aile/widgets/customButton.dart';
+import 'package:aile/widgets/smallButton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../constants.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -103,27 +109,93 @@ class _PackageDetailsState extends State<PackageDetails> {
                         ),
                         SizedBox(height:height*.08,),
 
-                        CustomButton(onPressed: (){
-                          showDialog(context: context,builder: (_)=>
-                              AlertDialog(
-                                shape: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                                content: Container(
-                                  height:MediaQuery.of(context).size.height*.12,
-                                  width: double.infinity,
-                                  child:Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      Icon(Icons.check_circle_outline,color: Colors.green,size: 40,),
-                                      Text(LocaleKeys.paySuccess.tr(),
-                                        style: TextStyle(fontSize: 18,
-                                          fontFamily: "dinnextl medium",),),
-                                    ],
+                        BlocConsumer<PayCubit,PayState>(
+                          listener: (_, state) {
+                            if (state is PayErrorState)
+                              Scaffold.of(_).showSnackBar(SnackBar(
+                                  backgroundColor: kPrimaryColor,
+                                  content: Text(
+                                    state.error,
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14),
+                                  )));
+                            if (state is PaySuccessState) {
+                              showDialog(context: context,builder: (_)=>
+                                  AlertDialog(
+                                    shape: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                                    content: Container(
+                                      height:MediaQuery.of(context).size.height*.12,
+                                      width: double.infinity,
+                                      child:Column(
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Icon(Icons.check_circle_outline,color: Colors.green,size: 40,),
+                                          Text(LocaleKeys.paySuccess.tr(),
+                                            style: TextStyle(fontSize: 18,
+                                              fontFamily: "dinnextl medium",),),
+                                        ],
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                          );
-                        }, title: LocaleKeys.confirm.tr()),
+                              );
+                              BlocProvider.of<ProfileCubit>(context).getProfile(lang: context.locale == Locale('en', 'US')?"en":"ar");
+                            }
+                          },
+                          builder:(_,state)=>state is PayLoadingState?
+                          Center(
+                            child: SpinKitChasingDots(
+                              size: 30,
+                              color: kPrimaryColor,
+                            ),
+                          ) :CustomButton(
+                                  onPressed: ()async{
+                            SharedPreferences _prefs = await SharedPreferences
+                                .getInstance();
+                            if (_prefs.getString("token") == null){
+                              showDialog(context: context, builder: (_) =>
+                                  AlertDialog(
+                                    shape: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(
+                                            15)),
+                                    content: Container(
+                                      height: MediaQuery
+                                          .of(context)
+                                          .size
+                                          .height * .3,
+                                      width: double.infinity,
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment
+                                            .spaceEvenly,
+                                        crossAxisAlignment: CrossAxisAlignment
+                                            .center,
+                                        children: [
+                                          Icon(Icons.warning_amber_outlined,
+                                            color: Colors.red, size: 40,),
+                                          Text(LocaleKeys.shouldSignUp.tr(),
+                                            style: TextStyle(fontSize: 18,
+                                              fontFamily: "dinnextl medium",),),
+                                          SizedBox(height: 10,),
+                                          SmallButton(onPressed: (){
+                                            Navigator.push(context, MaterialPageRoute(builder: (_)=>SignUpView()));
+                                          }, title: LocaleKeys.signUp.tr(),color: kPrimaryColor,),
+                                          SmallButton(onPressed: (){
+                                            Navigator.pop(context);
+                                          }, title: LocaleKeys.no.tr()),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                              );
+                            }
+                            else{
+                             PayCubit.get(context).payPackage(lang:context.locale == Locale('en', 'US')?"en":"ar");
+                            }
+
+                          }, title: LocaleKeys.confirm.tr()),
+                        ),
 
                       ],
                     ),

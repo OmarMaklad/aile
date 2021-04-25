@@ -27,7 +27,6 @@ class _ContactUsFormState extends State<ContactUsForm> {
                 return context.locale == Locale('en', 'US')?
                 "Please enter name":
                 "قم بادخال الاسم";
-
               }
             },
             onsave: (v){
@@ -80,7 +79,7 @@ class _ContactUsFormState extends State<ContactUsForm> {
             },
             controller: cubit.controller3,
             hint: context.locale == Locale('en', 'US')?
-            " type":
+            " Subject":
             "نوع الرسالة",
             dIcon: Icons.send,
             label: true,

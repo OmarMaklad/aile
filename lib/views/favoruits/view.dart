@@ -46,7 +46,7 @@ class _FavouritesViewState extends State<FavouritesView> {
         CustomAppBar(title:LocaleKeys.fav.tr(),),
        loged==false?
        Padding(
-         padding:  EdgeInsets.only(top: height*.3),
+         padding:  EdgeInsets.only(top: height*.35),
          child: Center(
            child: Text(LocaleKeys.shouldSignUp.tr(),
              style: TextStyle(fontSize: 16,
@@ -58,7 +58,7 @@ class _FavouritesViewState extends State<FavouritesView> {
           state is FavSuccessState?
           cubit.favModel.data.isEmpty?
               Padding(
-                padding: EdgeInsets.only(top: height*.3),
+                padding: EdgeInsets.only(top: height*.35),
                 child: Text(LocaleKeys.noFav.tr(),style: TextStyle(
                 fontFamily: "dinnextl bold",
                  fontSize:18,)),

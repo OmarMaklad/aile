@@ -9,6 +9,7 @@ class OrderCubit extends Cubit<OrderState>{
   OrderCubit() : super(OrderInitState());
   static OrderCubit get(context)=>BlocProvider.of(context);
   TextEditingController controller =TextEditingController();
+  TextEditingController controller1 =TextEditingController();
   int id;
   String date;
   String sTime;
@@ -53,7 +54,6 @@ class OrderCubit extends Cubit<OrderState>{
   }
   Future<void> sendSpatialOrder({String lang})async{
     emit(SOrderLoadingState());
-
     SharedPreferences _prefs = await SharedPreferences.getInstance();
     dio.options.headers = {
       "language":lang,
@@ -69,8 +69,8 @@ class OrderCubit extends Cubit<OrderState>{
         "start_time":sTime,
         "end_time":eTime,
         "address":address,
-        "type":"monthly",
-        "counter":"3",
+        "type":type,
+        "counter":counter,
       });
       print("ثانيه يحب");
       final Response response = await dio.post(url,data: formData,options: Options(contentType: "multipart/form-data"));

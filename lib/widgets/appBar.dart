@@ -22,13 +22,30 @@ class CustomAppBar extends StatelessWidget {
             bottomLeft:Radius.circular(40),
             bottomRight:Radius.circular(40) )
       ),
-      child: Row(
+      child: icon!=null?Padding(
+        padding:  EdgeInsets.symmetric(horizontal: 20),
+        child: Row(
+          children: [
+            GestureDetector(
+              onTap: (){Navigator.pop(context);},
+                child: Icon(icon)),
+        SizedBox(width: height*.16,),
+        Align(
+          alignment: Alignment.center,
+          child: Text(
+            title,
+            style: TextStyle( fontFamily: "dinnextl bold", fontSize: 18),
+          ),
+        ),
+          ],
+        ),
+      ):Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-      Text(
-        title,
-        style: TextStyle( fontFamily: "dinnextl bold", fontSize: 18),
-      ),
+          Text(
+            title,
+            style: TextStyle( fontFamily: "dinnextl bold", fontSize: 18),
+          ),
         ],
       ),
     );

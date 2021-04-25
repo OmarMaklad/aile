@@ -47,6 +47,7 @@ class CompleteForm extends StatelessWidget {
               }
               return null;
             },
+            type: TextInputType.number,
             onsave: (v){
               cubit.phone=v;
             },

@@ -76,6 +76,7 @@ class _UserAvatarState extends State<UserAvatar> {
         }
     );
   }
+
   @override
   Widget build(BuildContext context) {
     final cubit = ProfileCubit.get(context);
@@ -119,7 +120,6 @@ class _UserAvatarState extends State<UserAvatar> {
                       ),
                       height:95,
                       width: 95,
-
                     ),
                   ),
                 ),

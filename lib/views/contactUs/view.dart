@@ -24,6 +24,7 @@ class ContactUs extends StatelessWidget {
         ),
         body: ListView(
           children: [
+            SizedBox(height: 20,),
             ContactUsForm(),
             SizedBox(height: 60,),
             ContactUSSubmit(),
