@@ -27,6 +27,10 @@
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UISupportedInterfaceOrientations</key>
+	<key>NSCameraUsageDescription</key>
+    <string>We need your permission to open your camera app only now in order to be able to attach it with your orders and profile.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>We need your permission to open your photos app only now in order to be able to attach it with your orders and profile.</string>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
