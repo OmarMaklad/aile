@@ -12,7 +12,7 @@ class ProfileCubit extends Cubit<ProfileState>{
   ProfileCubit() : super(ProfileInitState());
 
   static ProfileCubit get (context)=> BlocProvider.of(context);
-  ProfileModel profileModel;
+  ProfileModel profileModel= ProfileModel();
   Dio dio = Dio();
   GetStorage box =GetStorage();
 
@@ -34,12 +34,12 @@ class ProfileCubit extends Cubit<ProfileState>{
         print(response.data);
         print("حا الشبشب ضاع");
         profileModel = ProfileModel.fromJson(response.data);
+        print(profileModel.data.email);
         _prefs.setString("phone", response.data['data']['phone']);
         _prefs.setString("name", response.data['data']['name']);
         _prefs.setString("email", response.data['data']['email']);
         box.write("package", response.data['data']['package_id']);
         print(response.data);
-
         emit(ProfileSuccessState());
       }else{
         emit(ProfileErrorState('enter net error'));

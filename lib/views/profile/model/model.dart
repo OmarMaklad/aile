@@ -21,7 +21,7 @@ class Data {
   String name;
   String email;
   String phone;
-  Null packageId;
+  int packageId;
 
   Data({this.image, this.name, this.email, this.phone, this.packageId});
 

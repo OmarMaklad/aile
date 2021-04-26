@@ -157,11 +157,11 @@ class _MemberDetailsState extends State<MemberDetails> {
                       padding:  EdgeInsets.symmetric(horizontal: 30,vertical: 15),
                       child: Align(
                         alignment: Alignment.centerLeft,
-                          child: Text("Details",style: TextStyle( fontFamily: "dinnextl bold", fontSize: 18))),
+                          child: Text( context.locale == Locale('en', 'US')?"Details":"التفاصيل",style: TextStyle( fontFamily: "dinnextl bold", fontSize: 18))),
                     ),
                     Padding(
                       padding:  EdgeInsets.symmetric(horizontal:30),
-                      child: Text(_mDetailsModel.data.description*100,style: TextStyle( fontFamily: "dinnextl medium", fontSize: 14,)),
+                      child: Text(_mDetailsModel.data.description,style: TextStyle( fontFamily: "dinnextl medium", fontSize: 14,)),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 20),

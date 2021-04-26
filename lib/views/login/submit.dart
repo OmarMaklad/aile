@@ -2,6 +2,7 @@ import 'package:aile/generated/locale_keys.g.dart';
 import 'package:aile/views/login/bloc/cubit.dart';
 import 'package:aile/views/memberHome/view.dart';
 import 'package:aile/views/profile/bloc/profileCubit.dart';
+import 'package:aile/views/profile/bloc/profileState.dart';
 import 'package:aile/views/tabsScreen/view.dart';
 import 'package:aile/widgets/customButton.dart';
 import 'package:flutter/material.dart';
@@ -38,8 +39,8 @@ class _LoginSubmitState extends State<LoginSubmit> {
                   fontSize: 14
               ),)));
           if(state is LoginSuccessState ){
-            BlocProvider.of<ProfileCubit>(context).getProfile(lang: context.locale == Locale('en', 'US')?"en":"ar");
             _checktype();
+            BlocProvider.of<ProfileCubit>(context).getProfile(lang: context.locale == Locale('en', 'US')?"en":"ar");
             Navigator.push(context, MaterialPageRoute(builder: (_)=>route));
           }
         },

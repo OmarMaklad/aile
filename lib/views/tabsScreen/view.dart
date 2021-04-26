@@ -89,24 +89,29 @@ class _TabsScreenState extends State<TabsScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Center(
-                              child: Container(
-                                padding: EdgeInsets.all(2),
-                                decoration: BoxDecoration(
-                                  color: kPrimaryColor,
-                                  borderRadius: BorderRadius.circular(150),
-                                ),
+                            GestureDetector(
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (_)=>ProfileView()));
+                              },
+                              child: Center(
                                 child: Container(
+                                  padding: EdgeInsets.all(2),
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: kPrimaryColor,
                                     borderRadius: BorderRadius.circular(150),
-                                    image: DecorationImage(
-                                        image:NetworkImage(cubit.profileModel.data.image),
-                                        fit: BoxFit.fill),
                                   ),
-                                  height:75,
-                                  width: 75,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(150),
+                                      image: DecorationImage(
+                                          image:NetworkImage(cubit.profileModel.data.image),
+                                          fit: BoxFit.fill),
+                                    ),
+                                    height:75,
+                                    width: 75,
 
+                                  ),
                                 ),
                               ),
                             ),
@@ -216,7 +221,8 @@ class _TabsScreenState extends State<TabsScreen> {
                           ],
                         ),
                       );
-                    }else if(state is ProfileErrorState){
+                    }
+                    else if(state is ProfileErrorState){
                     return  Padding(
                       padding:  EdgeInsets.symmetric(vertical:70,horizontal: 30),
                       child: Column(

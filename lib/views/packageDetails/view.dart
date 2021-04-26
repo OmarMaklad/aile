@@ -65,8 +65,7 @@ class _PackageDetailsState extends State<PackageDetails> {
                         color: Colors.white,
                         borderRadius: BorderRadius.vertical(top: Radius.circular(30))
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    child: ListView(
                       children: [
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -92,7 +91,7 @@ class _PackageDetailsState extends State<PackageDetails> {
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
-                          child: Text(cubit.packageModel.data.description*140,
+                          child: Text(cubit.packageModel.data.description,
                             style: TextStyle(fontSize: 14,color: kTextColor,fontFamily: "dinnextl medium",),),
                         ),
                         SizedBox(height:25,),
