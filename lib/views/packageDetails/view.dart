@@ -140,7 +140,7 @@ class _PackageDetailsState extends State<PackageDetails> {
                                     ),
                                   ),
                               );
-                              BlocProvider.of<ProfileCubit>(context).getProfile(lang: context.locale == Locale('en', 'US')?"en":"ar");
+                              BlocProvider.of<ProfileCubit>(context).getProfile(lang: EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar");
                             }
                           },
                           builder:(_,state)=>state is PayLoadingState?
@@ -190,7 +190,7 @@ class _PackageDetailsState extends State<PackageDetails> {
                               );
                             }
                             else{
-                             PayCubit.get(context).payPackage(lang:context.locale == Locale('en', 'US')?"en":"ar");
+                             PayCubit.get(context).payPackage(lang:EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar");
                             }
 
                           }, title: LocaleKeys.confirm.tr()),

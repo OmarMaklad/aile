@@ -26,7 +26,7 @@ class _PreviousCardState extends State<PreviousCard> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     return Container(
-      height: height*.2,
+      height: height*.22,
       padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
       margin: EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
@@ -55,7 +55,7 @@ class _PreviousCardState extends State<PreviousCard> {
                     content: StartRating(id: widget.id,),
                   ));
                 },
-                child: Text( context.locale == Locale('en', 'US')?
+                child: Text( EasyLocalization.of(context).locale == Locale('en', 'US')?
                 "Make Rate":
                 "اضف تقييمك",style: TextStyle(
                   fontFamily: "dinnextl medium",
@@ -167,7 +167,7 @@ class StartRatingState extends State<StartRating> {
                   id: widget.id,
                   comment: comment,
                   rate: starsCount,
-                  lang: context.locale == Locale('en', 'US')?"en":"ar",
+                  lang: EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar",
                 ).then((value) => Navigator.pop(context));
             setState(() {
               starsCount =0;

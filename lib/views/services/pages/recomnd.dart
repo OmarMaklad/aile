@@ -32,7 +32,7 @@ class Recomended extends StatelessWidget {
                 fav: false,
                route: MemberDetails(
                  id: cubit.serviceModel.recommend[index].id,
-                 lang:context.locale == Locale('en', 'US')?"en":"ar",
+                 lang:EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar",
                ),
                name: cubit.serviceModel.recommend[index].name,
                rate:cubit.serviceModel.recommend[index].rating.toInt(),

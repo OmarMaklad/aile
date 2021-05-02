@@ -38,7 +38,7 @@ class _ChangePasswordState extends State<ChangePassword> {
             CustomTextField(
               valid: (v){
                 if(v.isEmpty){
-                  return LocaleKeys.code.tr() ;
+                  return LocaleKeys.code.tr().toString() ;
                 }else{
                   return null;
                 }
@@ -56,9 +56,9 @@ class _ChangePasswordState extends State<ChangePassword> {
             CustomTextField(
               valid: (value) {
                 if (value.isEmpty) {
-                  return LocaleKeys.ePassword.tr();
+                  return LocaleKeys.ePassword.tr().toString();
                 }else if(value.length < 7){
-                  return context.locale == Locale('en', 'US')?"password should be more than 6 Characters or numbers":
+                  return EasyLocalization.of(context).locale == Locale('en', 'US')?"password should be more than 6 Characters or numbers":
                   "يجب ان يكون الرمز السري اكثر من 6 حروف او ارقام";
                 }
               },
@@ -92,7 +92,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                 ) : CustomButton(onPressed: (){
                   print(cubit.code);
                  if(forgetKey.currentState.validate()){
-                   cubit.change(lang: context.locale == Locale('en', 'US')?"en":"ar");
+                   cubit.change(lang: EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar");
                  }
                 }, title: LocaleKeys.send.tr()))
 

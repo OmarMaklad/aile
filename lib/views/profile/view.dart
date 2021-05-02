@@ -34,7 +34,7 @@ class ProfileView extends StatelessWidget {
           CustomTextField(
             valid: (val){
               if(val.isEmpty){
-                return LocaleKeys.userName.tr();
+                return LocaleKeys.userName.tr().toString();
               }
             },
             controller: cubit1.controller,
@@ -49,7 +49,7 @@ class ProfileView extends StatelessWidget {
           CustomTextField(
             valid: (val){
               if(val.isEmpty){
-                return LocaleKeys.eEmail.tr();
+                return LocaleKeys.eEmail.tr().toString();
               }
               return null;
             },
@@ -65,7 +65,7 @@ class ProfileView extends StatelessWidget {
           CustomTextField(
             valid: (val){
               if(val.isEmpty){
-                return LocaleKeys.phoneE.tr();
+                return LocaleKeys.phoneE.tr().toString();
               }
               return null;
             },
@@ -81,7 +81,7 @@ class ProfileView extends StatelessWidget {
           CustomTextField(
             valid: (val){
               if(val.isEmpty){
-                return LocaleKeys.ePassword.tr();
+                return LocaleKeys.ePassword.tr().toString();
               }
             },
             controller:cubit1.controller3 ,

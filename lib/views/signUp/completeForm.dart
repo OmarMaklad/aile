@@ -14,7 +14,7 @@ class CompleteForm extends StatelessWidget {
           CustomTextField(
             valid: (val){
               if(val.isEmpty){
-                return LocaleKeys.userName.tr();
+                return LocaleKeys.userName.tr().toString();
               }
             },
             onsave: (v){
@@ -28,7 +28,7 @@ class CompleteForm extends StatelessWidget {
           CustomTextField(
             valid: (val){
               if(val.isEmpty){
-                return LocaleKeys.eEmail.tr();
+                return LocaleKeys.eEmail.tr().toString();
               }
               return null;
             },
@@ -43,7 +43,7 @@ class CompleteForm extends StatelessWidget {
           CustomTextField(
             valid: (val){
               if(val.isEmpty){
-                return LocaleKeys.phoneE.tr();
+                return LocaleKeys.phoneE.tr().toString();
               }
               return null;
             },
@@ -60,9 +60,9 @@ class CompleteForm extends StatelessWidget {
           CustomTextField(
             valid: (value) {
               if (value.isEmpty) {
-                return LocaleKeys.ePassword.tr();
+                return LocaleKeys.ePassword.tr().toString();
               }else if(value.length < 7){
-                return context.locale == Locale('en', 'US')?"password should be more than 6 Characters or numbers":
+                return EasyLocalization.of(context).locale == Locale('en', 'US')?"password should be more than 6 Characters or numbers":
                 "يجب ان يكون الرمز السري اكثر من 6 حروف او ارقام";
               }
             },

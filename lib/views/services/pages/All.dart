@@ -18,7 +18,7 @@ class All extends StatelessWidget {
           itemBuilder: (_,index)=>GestureDetector(
             onTap: (){
               Navigator.push(context, MaterialPageRoute(builder: (_)=>MemberDetails(
-                lang:context.locale == Locale('en', 'US')?"en":"ar",
+                lang:EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar",
                 id: cubit.serviceModel.all[index].id,
               )));
             },

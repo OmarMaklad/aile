@@ -20,9 +20,9 @@ class LoginForm extends StatelessWidget {
             height: height*.35,
               child: Image.asset("assets/images/login.png")),
           CustomTextField(
-            valid: (val){
+            valid: ( val){
               if(val.isEmpty){
-                return LocaleKeys.eEmail.tr();
+                return LocaleKeys.eEmail.tr().toString();
               }
               return null;
             },
@@ -37,7 +37,7 @@ class LoginForm extends StatelessWidget {
           CustomTextField(
             valid: (val){
               if(val.isEmpty){
-                return LocaleKeys.ePassword.tr();
+                return LocaleKeys.ePassword.tr().toString();
               }
             },
             onsave: (v){

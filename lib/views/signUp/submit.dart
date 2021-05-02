@@ -29,7 +29,7 @@ class SignUpSubmit extends StatelessWidget {
                     fontSize: 14
                 ),)));
             if(state is SignUpSuccessState ){
-              BlocProvider.of<ProfileCubit>(context).getProfile(lang: context.locale == Locale('en', 'US')?"en":"ar");
+              BlocProvider.of<ProfileCubit>(context).getProfile(lang: EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar");
               Navigator.push(context, MaterialPageRoute(builder: (_)=>TabsScreen()));
             }
           },
@@ -42,7 +42,7 @@ class SignUpSubmit extends StatelessWidget {
             ) :  CustomButton(
                 onPressed: (){
                   if(cubit.signUpKey.currentState.validate()){
-                    cubit.signUp(lang: context.locale == Locale('en', 'US')?"en":"ar");
+                    cubit.signUp(lang: EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar");
                   }
                 },
                 title: "SignUp");

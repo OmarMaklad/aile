@@ -157,7 +157,7 @@ class _MemberDetailsState extends State<MemberDetails> {
                       padding:  EdgeInsets.symmetric(horizontal: 30,vertical: 15),
                       child: Align(
                         alignment: Alignment.centerLeft,
-                          child: Text( context.locale == Locale('en', 'US')?"Details":"التفاصيل",style: TextStyle( fontFamily: "dinnextl bold", fontSize: 18))),
+                          child: Text( EasyLocalization.of(context).locale == Locale('en', 'US')?"Details":"التفاصيل",style: TextStyle( fontFamily: "dinnextl bold", fontSize: 18))),
                     ),
                     Padding(
                       padding:  EdgeInsets.symmetric(horizontal:30),
@@ -209,7 +209,7 @@ class _MemberDetailsState extends State<MemberDetails> {
                           }),
                           SizedBox(height: 10,),
                           box.read("package")==null?SizedBox():
-                         CustomButton(title: context.locale == Locale('en', 'US')?
+                         CustomButton(title: EasyLocalization.of(context).locale == Locale('en', 'US')?
                           "Spatial Order":
                           "طلب خاص",
                             onPressed: ()async {

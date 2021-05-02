@@ -26,14 +26,14 @@ class SmallSlider extends StatelessWidget {
             onTap: (){
               PackageCubit.get(context).id=cubit.homeModel.packages[index].id;
               PayCubit.get(context).packageId=cubit.homeModel.packages[index].id;
-              PackageCubit.get(context).lang=context.locale == Locale('en', 'US')?"en":"ar";
+              PackageCubit.get(context).lang= EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar";
               PackageCubit.get(context).getPackage();
               Navigator.push(context,MaterialPageRoute(builder: (_)=>PackageDetails()));
             },
             child: Container(
               padding: EdgeInsets.symmetric(vertical: 10),
-              height: height*.08,
-              width: height*.28,
+              height: height*.09,
+              width: height*.29,
               decoration: BoxDecoration(
                   color: kPrimaryColor,
                 borderRadius: BorderRadius.circular(10)
@@ -55,7 +55,7 @@ class SmallSlider extends StatelessWidget {
                             fontFamily: "dinnextl bold",
                             color: Colors.white,
                             fontSize:16,),),
-                        SizedBox(height:20,),
+                        SizedBox(height:15,),
                         Text("See More",
                           style: TextStyle(
                             fontFamily: "dinnextl bold",
@@ -66,7 +66,7 @@ class SmallSlider extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 10),
                     height: height*.1,
-                      width: height*.11,
+                      width: height*.1,
                       child: Image.network(cubit.homeModel.packages[index].image,fit: BoxFit.cover,)),
                 ],
               ),

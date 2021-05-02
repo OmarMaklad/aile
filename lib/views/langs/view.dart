@@ -18,7 +18,7 @@ class _ChangeLangState extends State<ChangeLang> {
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
-    if (context.locale == Locale('en', 'US')) {
+    if (EasyLocalization.of(context).locale == Locale('en', 'US')) {
       setState(() {
         isSwitchedEn = true;
         isSwitchedAr = false;
@@ -62,10 +62,10 @@ class _ChangeLangState extends State<ChangeLang> {
                         setState(() {
                           isSwitchedAr = value;
                           if (isSwitchedAr == true) {
-                            context.locale = Locale('ar', 'EG');
+                            EasyLocalization.of(context).locale = Locale('ar', 'EG');
                             isSwitchedEn = false;
                           } else {
-                            context.locale = Locale('en', 'US');
+                            EasyLocalization.of(context).locale = Locale('en', 'US');
                             isSwitchedEn = true;
                           }
                         });
@@ -106,10 +106,10 @@ class _ChangeLangState extends State<ChangeLang> {
                       setState(() {
                         isSwitchedEn = val;
                         if (isSwitchedEn == true) {
-                          context.locale = Locale('en', 'US');
+                          EasyLocalization.of(context).locale = Locale('en', 'US');
                           isSwitchedAr = false;
                         } else {
-                          context.locale = Locale('ar', 'EG');
+                          EasyLocalization.of(context).locale = Locale('ar', 'EG');
                           isSwitchedAr = true;
                         }
                       });

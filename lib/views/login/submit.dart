@@ -23,7 +23,7 @@ class _LoginSubmitState extends State<LoginSubmit> {
    void _checktype()async{
      SharedPreferences _prefs = await SharedPreferences.getInstance();
     route = _prefs.getString("type")=="user"?TabsScreen():MemberHome(
-      lang: context.locale == Locale('en', 'US')?"en":"ar"
+      lang: EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar"
     );
    }
   @override
@@ -40,7 +40,7 @@ class _LoginSubmitState extends State<LoginSubmit> {
               ),)));
           if(state is LoginSuccessState ){
             _checktype();
-            BlocProvider.of<ProfileCubit>(context).getProfile(lang: context.locale == Locale('en', 'US')?"en":"ar");
+            BlocProvider.of<ProfileCubit>(context).getProfile(lang: EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar");
             Navigator.push(context, MaterialPageRoute(builder: (_)=>route));
           }
         },
