@@ -31,7 +31,7 @@ class SelectLanguage extends StatelessWidget {
                   ),
                   CustomButton(
                     onPressed: () {
-                      EasyLocalization.of(context).locale = Locale('en', 'US');
+                      context.locale = Locale('en', 'US');
                       Navigator.push(
                           context, MaterialPageRoute(builder: (_) => OnBoarding()));
                     },
@@ -40,7 +40,7 @@ class SelectLanguage extends StatelessWidget {
                   ),
                   CustomButton(
                     onPressed: () {
-                      EasyLocalization.of(context).locale = Locale('ar', 'EG');
+                      context.locale = Locale('ar', 'EG');
                       Navigator.push(
                           context, MaterialPageRoute(builder: (_) => OnBoarding()));
                     },

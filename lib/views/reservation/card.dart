@@ -55,7 +55,7 @@ class _PreviousCardState extends State<PreviousCard> {
                     content: StartRating(id: widget.id,),
                   ));
                 },
-                child: Text( EasyLocalization.of(context).locale == Locale('en', 'US')?
+                child: Text( context.locale == Locale('en', 'US')?
                 "Make Rate":
                 "اضف تقييمك",style: TextStyle(
                   fontFamily: "dinnextl medium",
@@ -167,7 +167,7 @@ class StartRatingState extends State<StartRating> {
                   id: widget.id,
                   comment: comment,
                   rate: starsCount,
-                  lang: EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar",
+                  lang: context.locale == Locale('en', 'US')?"en":"ar",
                 ).then((value) => Navigator.pop(context));
             setState(() {
               starsCount =0;

@@ -50,32 +50,32 @@ class _SpatialOrderDialogState extends State<SpatialOrderDialog> {
                       color=kPrimaryColor;
                       color1=null;
                       color2=null;
-                      cubit.type= EasyLocalization.of(context).locale == Locale('en', 'US')?"Daily":"يومى";
+                      cubit.type=context.locale == Locale('en', 'US')?"Daily":"يومى";
                     });
-                  }, title:EasyLocalization.of(context).locale == Locale('en', 'US')?"Daily":"يومى",color: color,),
+                  }, title:context.locale == Locale('en', 'US')?"Daily":"يومى",color: color,),
                   ChooseType(onPressed: (){
                     setState(() {
                       color1=kPrimaryColor;
                       color=null;
                       color2=null;
-                      cubit.type=EasyLocalization.of(context).locale == Locale('en', 'US')? "Weekly":"اسبوعى";
+                      cubit.type=context.locale == Locale('en', 'US')? "Weekly":"اسبوعى";
                     });
-                  }, title:EasyLocalization.of(context).locale == Locale('en', 'US')? "Weekly":"اسبوعى",color: color1,),
+                  }, title:context.locale == Locale('en', 'US')? "Weekly":"اسبوعى",color: color1,),
                   ChooseType(onPressed: (){
                     setState(() {
                       color2=kPrimaryColor;
                       color1=null;
                       color=null;
-                      cubit.type=EasyLocalization.of(context).locale == Locale('en', 'US')?"Monthly":"شهرى";
+                      cubit.type=context.locale == Locale('en', 'US')?"Monthly":"شهرى";
                     });
-                  }, title: EasyLocalization.of(context).locale == Locale('en', 'US')?"Monthly":"شهرى",color: color2,),
+                  }, title: context.locale == Locale('en', 'US')?"Monthly":"شهرى",color: color2,),
                 ],
               ),
             ),
             SizedBox(height: height*.03,),
             Padding(
               padding:  EdgeInsets.symmetric(horizontal: 15,vertical:10),
-              child: Text(EasyLocalization.of(context).locale == Locale('en', 'US')?"Set Date":"اكتب التاريخ",style: TextStyle(color:Colors.black,fontSize: 17, fontFamily: "dinnextl bold",),),
+              child: Text(context.locale == Locale('en', 'US')?"Set Date":"اكتب التاريخ",style: TextStyle(color:Colors.black,fontSize: 17, fontFamily: "dinnextl bold",),),
             ),
             Container(
               height: height*.07,
@@ -88,7 +88,7 @@ class _SpatialOrderDialogState extends State<SpatialOrderDialog> {
                 firstDate: DateTime.utc(2020),
                 lastDate: DateTime.utc(2200),
                 decoration:InputDecoration(
-                  hintText:EasyLocalization.of(context).locale == Locale('en', 'US')?"Date":"التاريخ",
+                  hintText:context.locale == Locale('en', 'US')?"Date":"التاريخ",
                   prefixIcon: Icon(Icons.date_range),
                   hintStyle: TextStyle(fontSize: 14,color: kTextColor,fontFamily: "dinnextl medium"),
                   filled: true,
@@ -238,10 +238,10 @@ class _SpatialOrderDialogState extends State<SpatialOrderDialog> {
             SizedBox(height: height*.04,),
             CustomTextField(
               dIcon: Icons.countertops,
-              hint:EasyLocalization.of(context).locale == Locale('en', 'US')?"Number of Day":"عدد الايام" ,
+              hint:context.locale == Locale('en', 'US')?"Number of Day":"عدد الايام" ,
               valid: (v){
                 if(v.isEmpty){
-                  return EasyLocalization.of(context).locale == Locale('en', 'US')?"Required":"حقل فارغ";
+                  return context.locale == Locale('en', 'US')?"Required":"حقل فارغ";
                 }
               },
               controller: cubit.controller,
@@ -256,7 +256,7 @@ class _SpatialOrderDialogState extends State<SpatialOrderDialog> {
               hint: LocaleKeys.address.tr(),
               valid: (v){
                 if(v.isEmpty){
-                  return LocaleKeys.address.tr().toString();
+                  return LocaleKeys.address.tr();
                 }
               },
               controller: cubit.controller1,
@@ -295,7 +295,7 @@ class _SpatialOrderDialogState extends State<SpatialOrderDialog> {
                     onPressed: (){
                       if(_globalKey.currentState.validate()){
                         cubit.sendSpatialOrder(
-                          lang:EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar",
+                          lang: context.locale == Locale('en', 'US')?"en":"ar",
                         );
                       }
                     }, title: LocaleKeys.order.tr()))

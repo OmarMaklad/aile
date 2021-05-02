@@ -43,7 +43,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
             CustomTextField(
               valid: (val){
                 if(val.isEmpty){
-                  return LocaleKeys.eEmail.tr().toString();
+                  return LocaleKeys.eEmail.tr();
                 }
                 return null;
               },
@@ -77,7 +77,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   ),
                 ) : CustomButton(onPressed: (){
                  if(forgetKey.currentState.validate()){
-                   cubit.forget(lang:  EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar");
+                   cubit.forget(lang:  context.locale == Locale('en', 'US')?"en":"ar");
                  }
                 }, title: LocaleKeys.send.tr()))
 

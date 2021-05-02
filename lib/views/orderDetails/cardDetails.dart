@@ -29,7 +29,7 @@ class _DetailsCardState extends State<DetailsCard> {
       loading = true;
     });
     _acceptModel = await _acceptController.acceptOr(
-        lang: EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar",
+        lang: context.locale == Locale('en', 'US')?"en":"ar",
         id: widget.id
     );
     setState(() {
@@ -41,7 +41,7 @@ class _DetailsCardState extends State<DetailsCard> {
       loading = true;
     });
     _acceptModel = await _acceptController.endOr(
-        lang: EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar",
+        lang: context.locale == Locale('en', 'US')?"en":"ar",
         id: widget.id
     );
     setState(() {

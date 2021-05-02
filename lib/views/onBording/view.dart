@@ -38,7 +38,7 @@ class _OnBoardingState extends State<OnBoarding> {
     final height = MediaQuery.of(context).size.height;
     return BlocProvider(
       create: (_) => OnBoardCubit()
-        ..getOnBoard(lang: EasyLocalization.of(context).locale == Locale('en', 'US') ? "en" : "ar"),
+        ..getOnBoard(lang: context.locale == Locale('en', 'US') ? "en" : "ar"),
       child: Scaffold(
         backgroundColor: Colors.white,
         body: Container(
@@ -63,7 +63,7 @@ class _OnBoardingState extends State<OnBoarding> {
                       MaterialPageRoute(builder: (context) => TabsScreen()));
                 },
                 child: Text(
-                  EasyLocalization.of(context).locale == Locale('en', 'US')
+                  context.locale == Locale('en', 'US')
                       ? "Login as Visitor"
                       : "الدخول كزائر",
                   style: TextStyle(

@@ -57,9 +57,9 @@ class _TabsScreenState extends State<TabsScreen> {
     final cubit = ProfileCubit.get(context);
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create:(_)=>HomeCubit()..getBanner(lang: EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar") ),
-        BlocProvider(create:(_)=>FavCubit()..getFav(lang: EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar") ),
-        BlocProvider(create:(_)=>ProfileCubit()..getProfile(lang: EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar") ),
+        BlocProvider(create:(_)=>HomeCubit()..getBanner(lang: context.locale == Locale('en', 'US')?"en":"ar") ),
+        BlocProvider(create:(_)=>FavCubit()..getFav(lang: context.locale == Locale('en', 'US')?"en":"ar") ),
+        BlocProvider(create:(_)=>ProfileCubit()..getProfile(lang: context.locale == Locale('en', 'US')?"en":"ar") ),
       ],
 
       child: WillPopScope(
@@ -139,7 +139,7 @@ class _TabsScreenState extends State<TabsScreen> {
                             GestureDetector(
                               onTap: (){
                                 Navigator.push(context, MaterialPageRoute(builder: (_)=>Reservation(
-                                  lang: EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar",
+                                  lang: context.locale == Locale('en', 'US')?"en":"ar",
                                 )));
                               },
                               child: Row(
@@ -147,7 +147,7 @@ class _TabsScreenState extends State<TabsScreen> {
                                   Icon(Icons.edit,color: kTextColor,size:25,),
                                   SizedBox(width:5,),
                                   Text(
-                                    EasyLocalization.of(context).locale== Locale('en', 'US')?
+                                    context.locale == Locale('en', 'US')?
                                     "Reservations":
                                     "الطلبات",
                                     style: TextStyle(color:Colors.black,fontSize: 16, fontFamily: "dinnextl medium",),),
@@ -158,7 +158,7 @@ class _TabsScreenState extends State<TabsScreen> {
                             GestureDetector(
                               onTap: (){
                                 Navigator.push(context, MaterialPageRoute(builder: (_)=>ConditionView(
-                                  lang: EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar",
+                                  lang: context.locale == Locale('en', 'US')?"en":"ar",
                                 )));
                               },
                               child: Row(
@@ -230,7 +230,7 @@ class _TabsScreenState extends State<TabsScreen> {
                         children: [
                           Center(
                             child: Text(
-                              EasyLocalization.of(context).locale== Locale('en', 'US')?"You Login As Visitor":"لقد سجلت كزائر",
+                              context.locale == Locale('en', 'US')?"You Login As Visitor":"لقد سجلت كزائر",
                               style: TextStyle(color:Colors.black,fontSize: 18, fontFamily: "dinnextl bold",),),
                           ),
                           SizedBox(height:40,),

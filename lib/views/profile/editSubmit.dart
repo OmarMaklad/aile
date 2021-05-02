@@ -43,7 +43,7 @@ class SubmitEdit extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   fontSize: 14),
             )));
-          BlocProvider.of<ProfileCubit>(context).getProfile(lang: EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar");
+          BlocProvider.of<ProfileCubit>(context).getProfile(lang: context.locale == Locale('en', 'US')?"en":"ar");
         }
       },
       builder: (context, state) {
@@ -58,7 +58,7 @@ class SubmitEdit extends StatelessWidget {
               padding:  EdgeInsets.symmetric(horizontal: 20,vertical:5),
               child: CustomButton(
               onPressed: () {
-                  cubit1.editProfile(lang:EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar");
+                  cubit1.editProfile(lang:context.locale == Locale('en', 'US')?"en":"ar");
               },
 
               title: LocaleKeys.edit.tr()),

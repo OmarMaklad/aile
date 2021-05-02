@@ -24,7 +24,7 @@ class _ContactUsFormState extends State<ContactUsForm> {
           CustomTextField(
             valid: (v){
               if(v.isEmpty){
-                return EasyLocalization.of(context).locale == Locale('en', 'US')?
+                return context.locale == Locale('en', 'US')?
                 "Please enter name":
                 "قم بادخال الاسم";
               }
@@ -39,7 +39,7 @@ class _ContactUsFormState extends State<ContactUsForm> {
           CustomTextField(
             valid: (v){
               if(v.isEmpty){
-                return LocaleKeys.eEmail.tr().toString();
+                return LocaleKeys.eEmail.tr();
 
               }
             },
@@ -53,7 +53,7 @@ class _ContactUsFormState extends State<ContactUsForm> {
           CustomTextField(
             valid: (val){
               if(val.isEmpty){
-                return LocaleKeys.phoneE.tr().toString();
+                return LocaleKeys.phoneE.tr();
               }
               return null;
             },
@@ -68,7 +68,7 @@ class _ContactUsFormState extends State<ContactUsForm> {
           CustomTextField(
             valid: (val){
               if(val.isEmpty){
-                return EasyLocalization.of(context).locale == Locale('en', 'US')?
+                return context.locale == Locale('en', 'US')?
                 "Please enter type":
                 "قم بادخال نوع التواصل";
               }
@@ -78,7 +78,7 @@ class _ContactUsFormState extends State<ContactUsForm> {
               cubit.type=v;
             },
             controller: cubit.controller3,
-            hint: EasyLocalization.of(context).locale == Locale('en', 'US')?
+            hint: context.locale == Locale('en', 'US')?
             " Subject":
             "نوع الرسالة",
             dIcon: Icons.send,
@@ -87,7 +87,7 @@ class _ContactUsFormState extends State<ContactUsForm> {
           CustomTextField(
             valid: (val) {
               if (val.isEmpty) {
-                return LocaleKeys.descE.tr().toString();
+                return LocaleKeys.descE.tr();
               }
             },
             onsave: (v){

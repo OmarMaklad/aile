@@ -82,7 +82,7 @@ class _FavCardState extends State<FavCard> {
                          });
                          await _mDetailsController.fav(
                            id: widget.id,
-                           lang: EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar",
+                           lang:context.locale == Locale('en', 'US')?"en":"ar",
                          ).then((value) => Navigator.push(context, MaterialPageRoute(builder:(_)=>TabsScreen(screenIndex:2,))));
                        },
                        child: Icon(Icons.favorite,color:like==false?kTextColor:Colors.red,size:30)),

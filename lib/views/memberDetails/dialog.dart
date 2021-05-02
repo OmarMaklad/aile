@@ -37,7 +37,7 @@ class _OrderDialogState extends State<OrderDialog> {
           children: [
             Padding(
               padding:  EdgeInsets.symmetric(horizontal: 15,vertical: 5),
-              child: Text( EasyLocalization.of(context).locale == Locale('en', 'US')?"Set Date":"اكتب التاريخ",style: TextStyle(color:Colors.black,fontSize: 17, fontFamily: "dinnextl bold",),),
+              child: Text( context.locale == Locale('en', 'US')?"Set Date":"اكتب التاريخ",style: TextStyle(color:Colors.black,fontSize: 17, fontFamily: "dinnextl bold",),),
             ),
             Container(
               height: height*.07,
@@ -202,7 +202,7 @@ class _OrderDialogState extends State<OrderDialog> {
               hint: LocaleKeys.address.tr(),
               valid: (v){
                 if(v.isEmpty){
-                  return  LocaleKeys.address.tr().toString();
+                  return  LocaleKeys.address.tr();
                 }
               },
               controller: cubit.controller,
@@ -233,7 +233,7 @@ class _OrderDialogState extends State<OrderDialog> {
                     onPressed: (){
                       if(_globalKey.currentState.validate()){
                         cubit.sendOrder(
-                            lang: EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar",
+                            lang: context.locale == Locale('en', 'US')?"en":"ar",
                         );
                       }
                     }, title: LocaleKeys.order.tr()))

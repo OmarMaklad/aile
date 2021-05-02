@@ -80,7 +80,7 @@ class _FavouritesViewState extends State<FavouritesView> {
                       id: cubit.favModel.data[index].id,
                       route: MemberDetails(
                         id: cubit.favModel.data[index].id,
-                          lang: EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar" ,
+                          lang:context.locale == Locale('en', 'US')?"en":"ar" ,
                       ),
                     ),
                   ),

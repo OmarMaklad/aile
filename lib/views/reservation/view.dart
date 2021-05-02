@@ -53,7 +53,7 @@ class _ReservationState extends State<Reservation> with SingleTickerProviderStat
         appBar: AppBar(
           backgroundColor:kPrimaryColor,
           title: Text(
-            EasyLocalization.of(context).locale == Locale('en', 'US')?
+            context.locale == Locale('en', 'US')?
             "Reservations":
             "الطلبات",
             style: TextStyle(
@@ -76,7 +76,7 @@ class _ReservationState extends State<Reservation> with SingleTickerProviderStat
                     child: Column(
                       children: [
                         Text(
-                          EasyLocalization.of(context).locale == Locale('en', 'US')?
+                          context.locale == Locale('en', 'US')?
                           "Previous Reservation":
                           "الطلبات السابقة",
                           style: TextStyle(
@@ -93,7 +93,7 @@ class _ReservationState extends State<Reservation> with SingleTickerProviderStat
                     child: Column(
                       children: [
                         Text(
-                          EasyLocalization.of(context).locale == Locale('en', 'US')?
+                          context.locale == Locale('en', 'US')?
                           "current Reservation":
                           "الطلبات الحالية",
                           style: TextStyle(

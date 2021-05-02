@@ -26,7 +26,7 @@ class SmallSlider extends StatelessWidget {
             onTap: (){
               PackageCubit.get(context).id=cubit.homeModel.packages[index].id;
               PayCubit.get(context).packageId=cubit.homeModel.packages[index].id;
-              PackageCubit.get(context).lang= EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar";
+              PackageCubit.get(context).lang=context.locale == Locale('en', 'US')?"en":"ar";
               PackageCubit.get(context).getPackage();
               Navigator.push(context,MaterialPageRoute(builder: (_)=>PackageDetails()));
             },

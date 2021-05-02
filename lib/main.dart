@@ -143,14 +143,14 @@ class _MyAppState extends State<MyApp> {
       BlocProvider(create: (_)=>PackageCubit()),
       BlocProvider(create: (_)=>ServiceCubit()),
       BlocProvider(create: (_)=>OrderCubit()),
-        BlocProvider.value(value: OnBoardCubit()..getCondition(lang: EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar"),),
-        BlocProvider.value(value: ProfileCubit()..getProfile(lang: EasyLocalization.of(context).locale == Locale('en', 'US')?"en":"ar"),),
+        BlocProvider.value(value: OnBoardCubit()..getCondition(lang: context.locale == Locale('en', 'US')?"en":"ar"),),
+        BlocProvider.value(value: ProfileCubit()..getProfile(lang: context.locale == Locale('en', 'US')?"en":"ar"),),
 
       ],
       child: MaterialApp(
-          // localizationsDelegates: context.localizationDelegates,
-          // supportedLocales: context.supportedLocales,
-          // locale: context.locale,
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             primarySwatch: Colors.deepPurple,

@@ -17,7 +17,7 @@ class SuitsList extends StatelessWidget {
             onTap: (){
               print(cubit.homeModel.services[index].id);
               ServiceCubit.get(context).id = cubit.homeModel.services[index].id;
-              ServiceCubit.get(context).lang = EasyLocalization.of(context).locale == Locale('en','US')?"en":"ar";
+              ServiceCubit.get(context).lang = context.locale == Locale('en','US')?"en":"ar";
               ServiceCubit.get(context).getService();
               Navigator.push(context, MaterialPageRoute(builder: (_)=>Services(
                 title: cubit.homeModel.services[index].name,

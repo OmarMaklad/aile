@@ -36,7 +36,7 @@ class HomeView extends StatelessWidget {
                         OfferSlider(),
                         Padding(
                           padding:  EdgeInsets.symmetric(vertical:10,horizontal: 20),
-                          child: Text( EasyLocalization.of(context).locale == Locale('en', 'US')?
+                          child: Text( context.locale == Locale('en', 'US')?
                           "Packages":
                           "الباقات",
                             style: TextStyle(

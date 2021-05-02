@@ -9,14 +9,9 @@ import 'package:easy_localization/easy_localization.dart' show AssetLoader;
 class CodegenLoader extends AssetLoader{
   const CodegenLoader();
 
-  // @override
-  // Future<Map<String, dynamic>> load(String fullPath, Locale locale) {
-  //   return Future.value(mapLocales[locale.toString()]);
-  // }
-
   @override
-  Future<Map<String, dynamic>> load(String localePath) {
-    return Future.value(mapLocales[localePath.toString()]);
+  Future<Map<String, dynamic>> load(String fullPath, Locale locale ) {
+    return Future.value(mapLocales[locale.toString()]);
   }
 
   static const Map<String,dynamic> ar_EG = {
@@ -1083,5 +1078,4 @@ static const Map<String,dynamic> en_US = {
   "amount": "Amount"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar_EG": ar_EG, "en_US": en_US};
-
 }

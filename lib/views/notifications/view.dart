@@ -31,7 +31,7 @@ class _NotificationsState extends State<Notifications> {
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
-    if ( EasyLocalization.of(context).locale == Locale('en', 'US')) {
+    if (context.locale == Locale('en', 'US')) {
       setState(() {
        langs="en";
       });
@@ -73,7 +73,7 @@ class _NotificationsState extends State<Notifications> {
                 ):
           ListView.separated(
                   itemBuilder: (cxt, index) => NotificationCard(
-                    text:  EasyLocalization.of(context).locale == Locale('en', 'US')?_notificationModel.data[index].bodyEn:
+                    text:  context.locale == Locale('en', 'US')?_notificationModel.data[index].bodyEn:
                     _notificationModel.data[index].body,
                   ),
                   shrinkWrap: true,
